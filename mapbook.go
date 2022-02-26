@@ -1,15 +1,10 @@
 package mapbook
 
 import (
-	"fmt"
 	"sort"
 
 	"github.com/shopspring/decimal"
 )
-
-func Version() {
-	fmt.Println("0.0.1")
-}
 
 // [price, volume]
 
