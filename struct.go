@@ -13,7 +13,7 @@ type AskBook struct {
 
 type BidBook struct {
 	OrderKey []string
-	Book     [][]string
+	Book     map[string]string
 	sync.RWMutex
 
 	isEvent bool
