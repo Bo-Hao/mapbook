@@ -85,7 +85,6 @@ func (book *AskBook) GetAll() ([][]string, bool) {
 	if len(asks) != 0 {
 		return asks, true
 	} else {
-		fmt.Println(book)
 		return asks, false
 	}
 }
