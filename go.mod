@@ -1,4 +1,4 @@
-module mapbook
+module github.com/Bo-Hao/mapbook
 
 go 1.17
 
