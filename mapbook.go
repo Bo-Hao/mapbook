@@ -58,8 +58,8 @@ func (book *AskBook) Update(update [][]string) {
 
 func (book *AskBook) GetAll() ([][]string, bool) {
 	book.RLock()
+	defer book.RUnlock()
 	Book := book.Book
-	book.RUnlock()
 
 	prices := make([]decimal.Decimal, 0, len(book.Book))
 	for k := range Book {
@@ -137,8 +137,8 @@ func (book *BidBook) Update(update [][]string) {
 
 func (book *BidBook) GetAll() ([][]string, bool) {
 	book.RLock()
+	defer book.RUnlock()
 	Book := book.Book
-	book.RUnlock()
 
 	prices := make([]decimal.Decimal, 0, len(book.Book))
 	for k := range Book {
