@@ -12,6 +12,7 @@ import (
 
 // Ask
 func NewAskBook(IsEvent bool) *AskBook {
+
 	return &AskBook{
 		Book: map[string]string{},
 
