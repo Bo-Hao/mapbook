@@ -46,19 +46,27 @@ func (book *AskBook) Update(update [][]string) {
 }
 
 func (book *AskBook) GetAll() ([][]string, bool) {
-	var asks [][]string
+	var price []decimal.Decimal
 	// iterate the map
 	book.Book.Range(func(k, v interface{}) bool {
-		asks = append(asks, []string{k.(string), v.(string)})
+		p, _ := decimal.NewFromString(k.(string))
+		price = append(price, p)
 		return true
 	})
 
 	// from small to big
-	sort.Slice(asks, func(i, j int) bool {
-		pi, _ := decimal.NewFromString(asks[i][0])
-		pj, _ := decimal.NewFromString(asks[j][0])
-		return pi.LessThan(pj)
+	sort.Slice(price, func(i, j int) bool {
+		return price[i].LessThan(price[j])
 	})
+
+	var asks [][]string
+	for i := range price {
+		k := price[i].String()
+		v, ok := book.Book.Load(k)
+		if ok {
+			asks = append(asks, []string{k, v.(string)})
+		}
+	}
 
 	if len(asks) != 0 {
 		return asks, true
@@ -104,19 +112,27 @@ func (book *BidBook) Update(update [][]string) {
 }
 
 func (book *BidBook) GetAll() ([][]string, bool) {
-	var bids [][]string
+	var price []decimal.Decimal
 	// iterate the map
 	book.Book.Range(func(k, v interface{}) bool {
-		bids = append(bids, []string{k.(string), v.(string)})
+		p, _ := decimal.NewFromString(k.(string))
+		price = append(price, p)
 		return true
 	})
 
 	// from small to big
-	sort.Slice(bids, func(i, j int) bool {
-		pi, _ := decimal.NewFromString(bids[i][0])
-		pj, _ := decimal.NewFromString(bids[j][0])
-		return pi.GreaterThan(pj)
+	sort.Slice(price, func(i, j int) bool {
+		return price[i].GreaterThan(price[j])
 	})
+
+	var bids [][]string
+	for i := range price {
+		k := price[i].String()
+		v, ok := book.Book.Load(k)
+		if ok {
+			bids = append(bids, []string{k, v.(string)})
+		}
+	}
 
 	if len(bids) != 0 {
 		return bids, true
