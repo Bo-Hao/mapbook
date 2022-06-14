@@ -1,6 +1,6 @@
 package mapbook
 
-import "sync"
+/* import "sync"
 
 type AskBook struct {
 	OrderKey []string
@@ -19,3 +19,4 @@ type BidBook struct {
 	isEvent bool
 	event   [][]string
 }
+*/

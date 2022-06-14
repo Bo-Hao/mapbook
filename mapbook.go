@@ -1,6 +1,6 @@
 package mapbook
 
-import (
+/* import (
 	"fmt"
 	"log"
 	"sort"
@@ -169,3 +169,4 @@ func (book *BidBook) GetAll() ([][]string, bool) {
 		return bids, false
 	}
 }
+*/
