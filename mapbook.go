@@ -10,6 +10,7 @@ package mapbook
 
 // [price, volume]
 
+
 // Ask
 func NewAskBook(IsEvent bool) *AskBook {
 
